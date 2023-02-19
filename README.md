@@ -42,7 +42,7 @@ After collecting the data, I needed to clean it up so that it was usable for our
 
 *	Removed columns that will not improve the analysis
 * Converted the nominal values in 'Reason for Absence' column to dummy variables
-* Grouped 'Reason for Absence' based on the 'Absenteeism Feature Descriptions Table'
+* Grouped 'Reason for Absence' based on the [Absenteeism Feature Descriptions](https://github.com/nengnengfei/Data_Science_Absenteeism_Analysis/blob/main/Absenteeism_Feature_Description.png) Table
 *	Made new columns for each group of reason
 
 
@@ -57,7 +57,10 @@ I looked at the distributions of the data and the value counts for the various c
 
 First, I transformed the categorical variables into dummy variables. I also split the data into train and tests sets with a test size of 20%.   
 
-I tried three different models and evaluated them using Mean Absolute Error. I chose MAE because it is relatively easy to interpret and outliers aren’t particularly bad in for this type of model.   
+I chose Logistic Regression to estimate the probability of absenteeism occuring by classifying people into 2 classes.
+* Take the median value of the 'Absenteeism Time in Hours' and use it as a 'cut-off' line.
+* Moderately Absent: absent less than the median value of the 'Absenteeism Time in Hours'
+* Excessively Absent: absent more than the median value of the 'Absenteeism Time in Hours'
 
 I tried three different models:
 *	**Multiple Linear Regression** – Baseline for the model
