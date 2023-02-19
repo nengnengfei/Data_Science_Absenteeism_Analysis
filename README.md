@@ -54,40 +54,25 @@ I chose Logistic Regression to estimate the probability of absenteeism occuring 
 * Moderately Absent: absent less than or equal to the median value of the 'Absenteeism Time in Hours'
 * Excessively Absent: absent more than the median value of the 'Absenteeism Time in Hours'
 
-## Insights from model
-
- The most important feature is:
- 
-     - the 4 reasons for absence: Reason_1 to Reason_4
-     - Transportation Expense
-     - Children
-     - Body Mass Index
-     - Pets
-     - Education
-     
- The smallest impact on model is:
- 
-     - Month Value
-     - Daily Work Load Average
-     - Distance to Work
-     - Day of the Week
-     
-     
-Based on the Odds_ratio: 
-
-    - Reason_3: The most crucial reason for excessive absence is poisoning. If someone is poisoned, they won't go to work and they're being excessively absent after being poisoned are 22 times higher than when no reason was reported.
-    - Reason_1: various diseases. A person who has reported this is 16 times more likely to be excessively absent than a person who didn't specify a reason.
-    - Reason_2: pregnancy and giving birth. When woman is pregnant, she goes to the gynecologist, gets a regular pregnancy check and comes back to work. 2.5 times more likely to be excessively absent than the base model.
-    - Transportation Expense: for 1 standard deviation increase in Transportation Expense, it is close to twice as likely to be excessively absent.
-    - Pet: for each additional standardized unit of Pet, the odd = 1 - Odds_ratio, or 24% lower than the base model. This is maybe because if someone have several pets, they're probably not taking care of them on their own(somebody else can take them to the doctor if something is wrong)
+## Insights from model (based on the Odds_ratio)
+* Reason_3: The most crucial reason for excessive absence is poisoning. If someone is poisoned, they won't go to work and they're being excessively absent after being poisoned are 22 times higher than when no reason was reported.
+* Reason_1: various diseases. A person who has reported this is 16 times more likely to be excessively absent than a person who didn't specify a reason.
+* Reason_2: pregnancy and giving birth. When woman is pregnant, she goes to the gynecologist, gets a regular pregnancy check and comes back to work. 2.5 times more likely to be excessively absent than the base model.
+* Transportation Expense: for 1 standard deviation increase in Transportation Expense, it is close to twice as likely to be excessively absent.
+* Pet: for each additional standardized unit of Pet, the odd = 1 - Odds_ratio, or 24% lower than the base model. This is maybe because if someone have several pets, they're probably not taking care of them on their own(somebody else can take them to the doctor if something is wrong)
 
 
 ## Use Tableau to analyze absenteeism model
 Below are a few highlights from the Tableau. 
 
-![alt text](https://github.com/nengnengfei/Data_Science_Absenteeism_Analysis/blob/main/Age%20vs%20Probability.png "Salary by Position")
-![alt text](https://github.com/nengnengfei/Data_Science_Absenteeism_Analysis/blob/main/Reasons%20vs%20Probability.png "Job Opportunities by State")
-![alt text](https://github.com/PlayingNumbers/ds_salary_proj/blob/master/correlation_visual.png "Correlations")
+![alt text](https://github.com/nengnengfei/Data_Science_Absenteeism_Analysis/blob/main/Age%20vs%20Probability.png "Age vs Probability")
+![alt text](https://github.com/nengnengfei/Data_Science_Absenteeism_Analysis/blob/main/Reasons%20vs%20Probability.png "Age vs Probability")
+![alt text](https://github.com/nengnengfei/Data_Science_Absenteeism_Analysis/blob/main/Transportation%20Expense%20vs%20Children.png "Transportation Expense and Children")
 
-
-
+## Summary
+* Dropped Reason 2 and Reason3 (doesn't tell much about what to expect from individuals being absent)
+* Reason 1 represents very serious diseases; the numbers tell us that the expected probability of an individual to be excessively absent because of Reason 1 is higher than 50%.
+* Reason 4 represents light reasons for absence, a dental appointment, physiotherapy a medical consultation, and others. It is quite probable that none of these could be serious enough to require that a person is absent from their workplace for an entire day. (People who must be absent for such a reason are not expected to be excessively absent.)
+* There is a positive correlation, the higher the transportation expense of person, the higher the chance they will be away from work excessively.
+* People with no children don't exhibit a high probability for excessive absence.
+* People with 1 or 2 children don't generally spend more than $240 on transportation.
