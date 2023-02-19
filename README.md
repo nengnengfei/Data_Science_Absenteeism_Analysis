@@ -45,35 +45,41 @@ After collecting the data, I needed to clean it up so that it was usable for our
 * Grouped 'Reason for Absence' based on the [Absenteeism Feature Descriptions](https://github.com/nengnengfei/Data_Science_Absenteeism_Analysis/blob/main/Absenteeism_Feature_Description.png) Table
 *	Made new columns for each group of reason
 
-
-## EDA
-I looked at the distributions of the data and the value counts for the various categorical variables. Below are a few highlights from the pivot tables. 
-
-![alt text](https://github.com/PlayingNumbers/ds_salary_proj/blob/master/salary_by_job_title.PNG "Salary by Position")
-![alt text](https://github.com/PlayingNumbers/ds_salary_proj/blob/master/positions_by_state.png "Job Opportunities by State")
-![alt text](https://github.com/PlayingNumbers/ds_salary_proj/blob/master/correlation_visual.png "Correlations")
-
 ## Model Building 
 
 First, I transformed the categorical variables into dummy variables. I also split the data into train and tests sets with a test size of 20%.   
 
 I chose Logistic Regression to estimate the probability of absenteeism occuring by classifying people into 2 classes.
 * Take the median value of the 'Absenteeism Time in Hours' and use it as a 'cut-off' line.
-* Moderately Absent: absent less than the median value of the 'Absenteeism Time in Hours'
+* Moderately Absent: absent less than or equal to the median value of the 'Absenteeism Time in Hours'
 * Excessively Absent: absent more than the median value of the 'Absenteeism Time in Hours'
 
-I tried three different models:
-*	**Multiple Linear Regression** – Baseline for the model
-*	**Lasso Regression** – Because of the sparse data from the many categorical variables, I thought a normalized regression like lasso would be effective.
-*	**Random Forest** – Again, with the sparsity associated with the data, I thought that this would be a good fit. 
+## Insights from model
 
-## Model performance
-The Random Forest model far outperformed the other approaches on the test and validation sets. 
-*	**Random Forest** : MAE = 11.22
-*	**Linear Regression**: MAE = 18.86
-*	**Ridge Regression**: MAE = 19.67
+ The most important feature is:
+ 
+     - the 4 reasons for absence: Reason_1 to Reason_4
+     - Transportation Expense
+     - Children
+     - Body Mass Index
+     - Pets
+     - Education
+     
+ The smallest impact on model is:
+ 
+     - Month Value
+     - Daily Work Load Average
+     - Distance to Work
+     - Day of the Week
+     
+     
+Based on the Odds_ratio: 
 
-## Productionization 
-In this step, I built a flask API endpoint that was hosted on a local webserver by following along with the TDS tutorial in the reference section above. The API endpoint takes in a request with a list of values from a job listing and returns an estimated salary. 
+    - Reason_3: The most crucial reason for excessive absence is poisoning. If someone is poisoned, they won't go to work and they're being excessively absent after being poisoned are 22 times higher than when no reason was reported.
+    - Reason_1: various diseases. A person who has reported this is 16 times more likely to be excessively absent than a person who didn't specify a reason.
+    - Reason_2: pregnancy and giving birth. When woman is pregnant, she goes to the gynecologist, gets a regular pregnancy check and comes back to work. 2.5 times more likely to be excessively absent than the base model.
+    - Transportation Expense: for 1 standard deviation increase in Transportation Expense, it is close to twice as likely to be excessively absent.
+    - Pet: for each additional standardized unit of Pet, the odd = 1 - Odds_ratio, or 24% lower than the base model. This is maybe because if someone have several pets, they're probably not taking care of them on their own(somebody else can take them to the doctor if something is wrong)
 
 
+## Use Tableau to analyze absenteeism model
