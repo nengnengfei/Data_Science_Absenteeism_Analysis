@@ -83,3 +83,11 @@ Based on the Odds_ratio:
 
 
 ## Use Tableau to analyze absenteeism model
+Below are a few highlights from the Tableau. 
+
+![alt text](https://github.com/nengnengfei/Data_Science_Absenteeism_Analysis/blob/main/Age%20vs%20Probability.png "Salary by Position")
+![alt text](https://github.com/PlayingNumbers/ds_salary_proj/blob/master/positions_by_state.png "Job Opportunities by State")
+![alt text](https://github.com/PlayingNumbers/ds_salary_proj/blob/master/correlation_visual.png "Correlations")
+
+
+
